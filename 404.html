@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Not Found — Auspicious by Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter+Tight:wght@500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      color: #ede5d3;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .wrap { max-width: 520px; }
+    .eyebrow {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: #d4a932;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: #b8af9c;
+      display: block;
+      margin-top: -0.1em;
+    }
+    .rule {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d4a932 50%, transparent);
+      margin: 2rem auto;
+    }
+    p { color: #b8af9c; font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; }
+    a {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      color: #ede5d3;
+      background: #a63d2f;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.4s;
+    }
+    a:hover { background: #d4a932; color: #000; }
+    .tri {
+      display: flex;
+      width: 80px;
+      height: 1px;
+      margin: 2rem auto;
+    }
+    .tri span { flex: 1; }
+    .tri .a { background: #a63d2f; }
+    .tri .b { background: #d4a932; }
+    .tri .c { background: #2e9ac4; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">Page not found</div>
+    <h1>Lost<em>between worlds</em></h1>
+    <div class="tri"><span class="a"></span><span class="b"></span><span class="c"></span></div>
+    <p>This page seems to have wandered off the plateau. Return to the collection to find your way.</p>
+    <a href="/">Return to the Collection</a>
+  </div>
+</body>
+</html>
