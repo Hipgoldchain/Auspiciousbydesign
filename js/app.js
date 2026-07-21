@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
    AUSPICIOUS BY DESIGN — APP
-   Renders the catalogue, handles filter / search, modal,
+   Renders the collection, handles filter / search, modal,
    contact form, and scroll-aware navigation.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -52,7 +52,7 @@
             </div>
             <div class="category-meta">
               <span class="count">${items.length}</span>
-              ${items.length === 1 ? "Piece" : "Pieces"} &middot; ${esc(cat.period)}
+              ${items.length === 1 ? "piece" : "pieces"} &middot; ${esc(cat.period)}
             </div>
           </div>
           <p class="category-sub">${esc(cat.subtitle)}</p>

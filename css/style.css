@@ -273,7 +273,7 @@ body {
   font-style: normal;
   font-weight: 400;
   display: block;
-  margin-top: -0.1em;
+  margin-top: 0.15em;
   color: var(--gold);
 }
 .hero-rule {
