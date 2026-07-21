@@ -41,7 +41,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 1. Save the photo as `plate_NN.jpg` in `images/plates/` (where `NN` is the zero-padded plate number, e.g. `plate_14.jpg`)
 2. Save a thumbnail version (max 600px wide) of the same name in `images/thumbs/`
 3. In `js/catalogue.js`, find the matching plate and change `hasImage: false` to `hasImage: true`
-4. Commit and push — GitHub Pages will redeploy automatically
+4. Commit and push — Vercel will redeploy automatically
 
 Recommended specs: JPEG, 1200px wide for `plates/`, 600px wide for `thumbs/`, ~80–85% quality.
 
@@ -62,7 +62,13 @@ To mark another piece as sold, find its entry in `js/catalogue.js` and add `sold
 
 ## Deployment
 
-The site is deployed via **GitHub Pages** from the `main` branch of [`Hipgoldchain/Auspiciousbydesign`](https://github.com/Hipgoldchain/Auspiciousbydesign) with a custom domain at `antiquetibetanfurniture.com`. Any push to `main` triggers an automatic redeploy.
+The site is hosted on **Vercel**, connected to the GitHub repo [`Hipgoldchain/Auspiciousbydesign`](https://github.com/Hipgoldchain/Auspiciousbydesign). Every push to `main` triggers an automatic production deployment to `antiquetibetanfurniture.com`.
+
+| Service | URL |
+|---------|-----|
+| Production | https://antiquetibetanfurniture.com |
+| Vercel dashboard | https://vercel.com/alexander-coronas-projects/auspicious-by-design |
+| GitHub repo | https://github.com/Hipgoldchain/Auspiciousbydesign |
 
 To make changes:
 
@@ -73,6 +79,7 @@ cd Auspiciousbydesign
 git add .
 git commit -m "Describe your changes"
 git push origin main
+# Vercel auto-deploys on push
 ```
 
 ## Local development
