@@ -94,12 +94,12 @@
       ? `<div class="card-img"><img src="${imgPath}" alt="${esc(piece.title)}" loading="lazy"></div>`
       : `<div class="card-img placeholder">${PLACEHOLDER_SVG}</div>`;
 
-    const soldBadge = piece.sold ? `<span class="sold-badge">Sold</span>` : "";
+    const soldBanner = piece.sold ? `<div class="sold-banner" aria-label="Sold"><span>Sold</span></div>` : "";
 
     return `
       <article class="card${piece.sold ? " sold" : ""}" data-plate="${piece.plate}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
         ${imgPart}
-        ${soldBadge}
+        ${soldBanner}
         <div class="card-body">
           <div class="card-plate">Plate ${piece.plate} · ${piece.code}</div>
           <h3 class="card-title">${esc(piece.title)}</h3>
@@ -202,7 +202,7 @@
 
     document.getElementById("modal-eyebrow").textContent = `Plate ${piece.plate} · ${piece.code}`;
     document.getElementById("modal-title").textContent = piece.title;
-    document.getElementById("modal-period").innerHTML = esc(piece.period) + (piece.sold ? ' <span class="sold-badge">Sold</span>' : '');
+    document.getElementById("modal-period").innerHTML = esc(piece.period) + (piece.sold ? ' <span class="sold-banner-inline">Sold</span>' : '');
     document.getElementById("modal-origin").textContent = piece.origin;
     document.getElementById("modal-dims").textContent = piece.dimensions;
     document.getElementById("modal-desc").textContent = piece.description;

@@ -620,29 +620,50 @@ body {
   letter-spacing: 0.3em;
 }
 
-/* Sold badge */
-.sold-badge {
+/* Sold — diagonal ribbon banner on cards */
+.sold-banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  z-index: 3;
+  pointer-events: none;
+}
+.sold-banner span {
+  display: block;
+  position: absolute;
+  top: 22px;
+  right: -30px;
+  width: 150px;
+  padding: 0.45em 0;
+  background: var(--brick);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  text-align: center;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Sold — inline banner in modal */
+.sold-banner-inline {
   display: inline-block;
   font-family: var(--sans);
   font-size: 0.6rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
   color: #fff;
   background: var(--brick);
-  padding: 0.3em 0.9em;
-  border-radius: 2px;
-}
-.card .sold-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 2;
-}
-.modal-period .sold-badge {
+  padding: 0.4em 1.2em;
+  margin-left: 0.75rem;
   vertical-align: middle;
-  margin-left: 0.5rem;
-  font-size: 0.55rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 .card-body { padding: 1.25rem 1.5rem 1.5rem; }
