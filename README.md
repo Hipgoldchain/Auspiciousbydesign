@@ -45,55 +45,53 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 
 Recommended specs: JPEG, 1200px wide for `plates/`, 600px wide for `thumbs/`, ~80–85% quality.
 
-## Deploying to GitHub Pages
+## Sold pieces
 
-The repo is already created at `Hipgoldchain/Auspiciousbydesign`. To deploy:
+The following plates are marked as sold. A brick-red "Sold" badge appears on the catalogue card and inside the detail modal.
 
-1. **Clone the repo locally**
-   ```bash
-   git clone https://github.com/Hipgoldchain/Auspiciousbydesign.git
-   cd Auspiciousbydesign
-   ```
+| Plate | Code  | Title              |
+|-------|-------|--------------------|
+| 13    | SB126 | "Lhoka Box"        |
+| 27    | SB151 | Monastic Box       |
+| 50    | SC388 | Kham Cabinet       |
+| 52    | SC837 | Kham Altar Cabinet |
+| 75    | SC386 | Yangam Cabinet     |
+| 95    | ST623 | Table              |
 
-2. **Copy these files in** (everything in this build) so the structure matches the tree above.
+To mark another piece as sold, find its entry in `js/catalogue.js` and add `sold: true`.
 
-3. **Commit and push**
-   ```bash
-   git add .
-   git commit -m "Initial showroom site"
-   git push origin main
-   ```
+## Deployment
 
-4. **Enable GitHub Pages**
-   - Go to the repo's **Settings → Pages**
-   - Under **Source**, select **Deploy from a branch**
-   - Choose **`main`** branch, **`/ (root)`** folder
-   - Click **Save**
-   - Wait ~1 minute, then visit `https://hipgoldchain.github.io/Auspiciousbydesign/`
+The site is deployed via **GitHub Pages** from the `main` branch of [`Hipgoldchain/Auspiciousbydesign`](https://github.com/Hipgoldchain/Auspiciousbydesign). Any push to `main` triggers an automatic redeploy.
 
-5. **Optional: custom domain.** If you want to use a subdomain like `collection.kachalinta.com`:
-   - In Pages settings, enter the domain
-   - Add a `CNAME` DNS record at your domain registrar pointing to `hipgoldchain.github.io`
-   - GitHub will provision an HTTPS certificate automatically
+To make changes:
+
+```bash
+git clone https://github.com/Hipgoldchain/Auspiciousbydesign.git
+cd Auspiciousbydesign
+# edit files
+git add .
+git commit -m "Describe your changes"
+git push origin main
+```
+
+**Custom domain:** To use a domain like `collection.kachalinta.com`, add it in the repo's **Settings > Pages** and create a `CNAME` DNS record pointing to `hipgoldchain.github.io`.
 
 ## Local development
 
 The site is plain HTML / CSS / JS — no build step. To preview locally:
 
 ```bash
-# Any simple HTTP server works
 python3 -m http.server 8000
 # Then open http://localhost:8000
 ```
-
-Opening `index.html` directly in the browser (`file://`) also works, but a local server is recommended because some browsers handle relative paths and images differently under `file://`.
 
 ## Editing content
 
 - **Catalogue entries** live in `js/catalogue.js` — easy to edit titles, descriptions, dimensions
 - **Marking a piece as sold:** find the plate in `js/catalogue.js` and add `sold: true` to the entry
 - **Story text** lives in `index.html` inside the `<section class="story">` block
-- **Contact details** are in three places: `index.html` (the contact section), `js/app.js` (the mailto fallback), and `README.md`
+- **Contact details** are in three places: `index.html` (the contact section), `js/app.js` (the mailto fallback), and this README
 
 ## Credits
 
