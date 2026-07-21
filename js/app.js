@@ -117,6 +117,7 @@
     const cat = state.activeCategory;
     const period = state.activePeriod;
     const q = state.searchQuery.trim().toLowerCase();
+    const showingAll = cat === "all";
 
     document.querySelectorAll(".category").forEach(section => {
       const id = section.dataset.cat;
@@ -129,7 +130,7 @@
         if (!piece) return;
 
         let match = true;
-        if (cat !== "all" && piece.category !== cat) match = false;
+        if (!showingAll && piece.category !== cat) match = false;
         if (period !== "all") {
           const century = getEarliestCentury(piece.period);
           if (period === "15-17") {
@@ -151,7 +152,14 @@
 
       const empty = section.querySelector(".empty-state");
       if (empty) empty.classList.toggle("show", visibleCount === 0);
-      section.style.display = (cat === "all" || cat === id) ? "" : "none";
+
+      // Hide entire section if category filter excludes it, or if no cards match
+      const catMatch = showingAll || cat === id;
+      section.style.display = (catMatch && visibleCount > 0) ? "" : "none";
+
+      // Only show essay when viewing a single category (not "All")
+      const essay = section.querySelector(".category-essay");
+      if (essay) essay.style.display = (!showingAll && cat === id) ? "" : "none";
     });
   }
 
