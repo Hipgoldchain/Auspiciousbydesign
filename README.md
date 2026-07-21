@@ -2,7 +2,7 @@
 
 A private online showroom for a collection of antique Tibetan painted furniture, gathered over two decades in Kathmandu, Nepal.
 
-**Live site:** https://hipgoldchain.github.io/Auspiciousbydesign/
+**Live site:** https://antiquetibetanfurniture.com
 
 ---
 
@@ -62,7 +62,7 @@ To mark another piece as sold, find its entry in `js/catalogue.js` and add `sold
 
 ## Deployment
 
-The site is deployed via **GitHub Pages** from the `main` branch of [`Hipgoldchain/Auspiciousbydesign`](https://github.com/Hipgoldchain/Auspiciousbydesign). Any push to `main` triggers an automatic redeploy.
+The site is deployed via **GitHub Pages** from the `main` branch of [`Hipgoldchain/Auspiciousbydesign`](https://github.com/Hipgoldchain/Auspiciousbydesign) with a custom domain at `antiquetibetanfurniture.com`. Any push to `main` triggers an automatic redeploy.
 
 To make changes:
 
@@ -74,8 +74,6 @@ git add .
 git commit -m "Describe your changes"
 git push origin main
 ```
-
-**Custom domain:** To use a domain like `collection.kachalinta.com`, add it in the repo's **Settings > Pages** and create a `CNAME` DNS record pointing to `hipgoldchain.github.io`.
 
 ## Local development
 
