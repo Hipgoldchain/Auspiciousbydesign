@@ -56,6 +56,7 @@
             </div>
           </div>
           <p class="category-sub">${esc(cat.subtitle)}</p>
+          ${cat.essay ? `<div class="category-essay">${cat.essay.split('\n\n').map(p => `<p>${esc(p)}</p>`).join('')}</div>` : ''}
           <div class="grid" data-grid="${cat.id}">
             ${items.map((piece, i) => renderCard(piece, i)).join("")}
           </div>
