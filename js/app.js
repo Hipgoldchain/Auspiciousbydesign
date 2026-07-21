@@ -72,12 +72,22 @@
       g.appendChild(empty);
     });
 
-    // Wire up clicks
+    // Wire up clicks and keyboard
     document.querySelectorAll(".card").forEach(c => {
+      c.setAttribute("tabindex", "0");
+      c.setAttribute("role", "button");
+
       c.addEventListener("click", () => {
         const plate = parseInt(c.dataset.plate);
         const piece = CATALOGUE.find(p => p.plate === plate);
         if (piece) openModal(piece);
+      });
+
+      c.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          c.click();
+        }
       });
     });
 
@@ -118,6 +128,7 @@
     const period = state.activePeriod;
     const q = state.searchQuery.trim().toLowerCase();
     const showingAll = cat === "all";
+    let totalVisible = 0;
 
     document.querySelectorAll(".category").forEach(section => {
       const id = section.dataset.cat;
@@ -157,10 +168,18 @@
       const catMatch = showingAll || cat === id;
       section.style.display = (catMatch && visibleCount > 0) ? "" : "none";
 
+      if (catMatch) totalVisible += visibleCount;
+
       // Only show essay when viewing a single category (not "All")
       const essay = section.querySelector(".category-essay");
       if (essay) essay.style.display = (!showingAll && cat === id) ? "" : "none";
     });
+
+    // Global empty state when no cards match at all
+    const globalEmpty = document.getElementById("collection-empty");
+    if (globalEmpty) {
+      globalEmpty.style.display = totalVisible === 0 ? "" : "none";
+    }
   }
 
   function wireFilters() {
@@ -194,7 +213,11 @@
   }
 
   // ─── MODAL ────────────────────────────────────────────────
+  let previousFocus = null;
+
   function openModal(piece) {
+    previousFocus = document.activeElement;
+
     const overlay = document.getElementById("modal");
     const imgWrap = document.getElementById("modal-img");
     const imgPath = piece.hasImage
@@ -223,7 +246,6 @@
       const select = document.getElementById("form-piece");
       if (select) {
         const optVal = `Plate ${piece.plate} — ${piece.title}`;
-        // Add a temp option if not present
         let exists = false;
         for (const o of select.options) { if (o.value === optVal) { exists = true; break; } }
         if (!exists) {
@@ -241,11 +263,43 @@
 
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
+
+    // Move focus into modal
+    setTimeout(() => {
+      document.getElementById("modal-close").focus();
+    }, 100);
   }
 
   function closeModal() {
     document.getElementById("modal").classList.remove("open");
     document.body.style.overflow = "";
+
+    // Return focus to the element that opened the modal
+    if (previousFocus) {
+      previousFocus.focus();
+      previousFocus = null;
+    }
+  }
+
+  function trapFocus(e) {
+    const modal = document.getElementById("modal");
+    if (!modal.classList.contains("open")) return;
+
+    const focusable = modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   }
 
   function wireModal() {
@@ -255,6 +309,7 @@
     });
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") closeModal();
+      if (e.key === "Tab") trapFocus(e);
     });
   }
 
@@ -263,6 +318,7 @@
     const header = document.querySelector(".site-header");
     const toggle = document.getElementById("nav-toggle");
     const drawer = document.getElementById("nav-drawer");
+    const backdrop = document.getElementById("drawer-backdrop");
 
     function onScroll() {
       if (window.scrollY > 30) header.classList.add("scrolled");
@@ -271,17 +327,33 @@
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
+    function openDrawer() {
+      toggle.classList.add("open");
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
+      toggle.setAttribute("aria-label", "Close menu");
+      if (backdrop) backdrop.classList.add("open");
+    }
+
+    function closeDrawer() {
+      toggle.classList.remove("open");
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+      toggle.setAttribute("aria-label", "Open menu");
+      if (backdrop) backdrop.classList.remove("open");
+    }
+
     if (toggle && drawer) {
       toggle.addEventListener("click", () => {
-        toggle.classList.toggle("open");
-        drawer.classList.toggle("open");
+        if (drawer.classList.contains("open")) closeDrawer();
+        else openDrawer();
       });
       drawer.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => {
-          toggle.classList.remove("open");
-          drawer.classList.remove("open");
-        });
+        a.addEventListener("click", closeDrawer);
       });
+      if (backdrop) {
+        backdrop.addEventListener("click", closeDrawer);
+      }
     }
 
     // Active nav link based on scroll position
@@ -298,13 +370,44 @@
     updateActive();
   }
 
+  // ─── BACK TO TOP ──────────────────────────────────────────
+  function wireBackToTop() {
+    const btn = document.getElementById("back-to-top");
+    if (!btn) return;
+
+    function toggle() {
+      btn.classList.toggle("show", window.scrollY > 600);
+    }
+    window.addEventListener("scroll", toggle, { passive: true });
+    toggle();
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   // ─── ENQUIRY FORM ─────────────────────────────────────────
   function wireForm() {
     const form = document.getElementById("enquiry-form");
     if (!form) return;
 
+    function clearErrors() {
+      form.querySelectorAll(".field-error").forEach(el => el.remove());
+      form.querySelectorAll(".error").forEach(el => el.classList.remove("error"));
+    }
+
+    function showError(input, message) {
+      input.classList.add("error");
+      const err = document.createElement("div");
+      err.className = "field-error";
+      err.textContent = message;
+      input.parentNode.appendChild(err);
+    }
+
     form.addEventListener("submit", e => {
       e.preventDefault();
+      clearErrors();
+
       const data = {
         name:    form.elements["name"].value.trim(),
         email:   form.elements["email"].value.trim(),
@@ -312,8 +415,22 @@
         message: form.elements["message"].value.trim(),
       };
 
-      // Without a backend (static GitHub Pages), open the user's mail client
-      // pre-filled with the message body, addressed to the family.
+      // Validate required fields
+      let valid = true;
+      if (!data.name) {
+        showError(form.elements["name"], "Please enter your name.");
+        valid = false;
+      }
+      if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        showError(form.elements["email"], "Please enter a valid email address.");
+        valid = false;
+      }
+      if (!data.message) {
+        showError(form.elements["message"], "Please enter a message.");
+        valid = false;
+      }
+      if (!valid) return;
+
       const subject = `Enquiry — ${data.piece || "Auspicious by Design"}`;
       const body = `Hello,
 
@@ -326,15 +443,23 @@ Piece of interest: ${data.piece || "—"}`;
 
       const mailto = `mailto:info@antiquetibetanfurniture.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-      // Populate the piece select dynamically if needed
       const status = document.getElementById("form-status");
       status.textContent = "Opening your email client…";
-      status.classList.add("show");
+      status.className = "form-status show";
       window.location.href = mailto;
 
       setTimeout(() => {
         status.textContent = "If nothing happens, write to info@antiquetibetanfurniture.com directly.";
       }, 2000);
+    });
+
+    // Clear error state on input
+    form.querySelectorAll("input, textarea").forEach(el => {
+      el.addEventListener("input", () => {
+        el.classList.remove("error");
+        const err = el.parentNode.querySelector(".field-error");
+        if (err) err.remove();
+      });
     });
 
     // Populate piece select with all plates
@@ -368,6 +493,7 @@ Piece of interest: ${data.piece || "—"}`;
     wireModal();
     wireHeader();
     wireForm();
+    wireBackToTop();
   }
 
   if (document.readyState === "loading") {

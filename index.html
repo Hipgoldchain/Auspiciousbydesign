@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <link rel="preload" as="image" href="images/landscapes/hero.jpg">
   <link rel="stylesheet" href="css/style.css">
 
   <meta property="og:title" content="Auspicious by Design — The Corona Family Collection">
@@ -49,11 +50,12 @@
   </header>
 
   <!-- Mobile drawer -->
-  <aside class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation">
+  <aside class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
     <a href="#collection">Collection</a>
     <a href="#story">Our Story</a>
     <a href="#enquire">Enquire</a>
   </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
   <!-- ═══════════════════════════════════════════════════
        HERO
@@ -127,6 +129,12 @@
 
     <!-- Categories render here -->
     <div id="collection-root"></div>
+
+    <!-- Global empty state (shown when no cards match across all categories) -->
+    <div class="collection-empty" id="collection-empty" style="display:none;">
+      <div class="tracked">No pieces found</div>
+      <div>Try adjusting your filters or search term.</div>
+    </div>
   </main>
 
   <!-- ═══════════════════════════════════════════════════
@@ -409,7 +417,7 @@
   <section class="enquiry" id="enquire">
     <div class="enquiry-inner">
       <div class="enquiry-info">
-        <div class="section-eyebrow" style="text-align:left; margin-bottom: 0.5rem;">Chapter III &mdash; Enquire</div>
+        <div class="section-eyebrow">Chapter III &mdash; Enquire</div>
         <h2>Write <span class="it">to us</span></h2>
         <p>
           We welcome questions about any piece in the collection. Each item has been authenticated,
@@ -519,7 +527,14 @@
     </div>
   </div>
 
-  <script src="js/catalogue.js"></script>
-  <script src="js/app.js"></script>
+  <!-- Back to top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script src="js/catalogue.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
