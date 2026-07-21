@@ -36,7 +36,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 
 ## Image status
 
-19 plates currently have real photographs. The remaining plates display an elegant placeholder card with the description and dimensions visible. **To add a photograph for any plate:**
+All 82 plates have photographs. If a new plate is added, a placeholder card with description and dimensions will display until a photo is provided. **To add a photograph for any plate:**
 
 1. Save the photo as `plate_NN.jpg` in `images/plates/` (where `NN` is the zero-padded plate number, e.g. `plate_14.jpg`)
 2. Save a thumbnail version (max 600px wide) of the same name in `images/thumbs/`
