@@ -269,11 +269,11 @@ body {
   animation: fadeUp 1.4s 0.7s var(--ease) forwards;
 }
 .hero-title .by {
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   display: block;
   margin-top: -0.1em;
-  color: var(--gold-soft);
+  color: var(--gold);
 }
 .hero-rule {
   width: 90px;
@@ -400,7 +400,7 @@ body {
   letter-spacing: -0.015em;
   color: var(--gold);
 }
-.section-title .it { font-style: italic; color: var(--ink-soft); font-weight: 300; }
+.section-title .it { font-style: normal; color: var(--gold); font-weight: 400; }
 
 /* Filter bar */
 .filter-bar {
