@@ -29,7 +29,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 - **Full catalogue of 81 plates** across four categories: Monastic Trunks & Boxes, Leather Trunks, Cabinets & Altars, Tables
 - **Filter by category and period**, plus free-text search
 - **Click any piece** to open a detail modal with description and dimensions
-- **Enquiry form** that opens the visitor's mail client pre-filled and addressed to `lucacorona53@gmail.com`
+- **Enquiry form** that opens the visitor's mail client pre-filled and addressed to `info@antiquetibetanfurniture.com`
 - **Mobile-optimised navigation** with a slide-in drawer
 - **Lazy-loaded images** so the site stays fast even with the full catalogue
 

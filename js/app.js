@@ -94,9 +94,12 @@
       ? `<div class="card-img"><img src="${imgPath}" alt="${esc(piece.title)}" loading="lazy"></div>`
       : `<div class="card-img placeholder">${PLACEHOLDER_SVG}</div>`;
 
+    const soldBadge = piece.sold ? `<span class="sold-badge">Sold</span>` : "";
+
     return `
-      <article class="card" data-plate="${piece.plate}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
+      <article class="card${piece.sold ? " sold" : ""}" data-plate="${piece.plate}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
         ${imgPart}
+        ${soldBadge}
         <div class="card-body">
           <div class="card-plate">Plate ${piece.plate} · ${piece.code}</div>
           <h3 class="card-title">${esc(piece.title)}</h3>
@@ -199,7 +202,7 @@
 
     document.getElementById("modal-eyebrow").textContent = `Plate ${piece.plate} · ${piece.code}`;
     document.getElementById("modal-title").textContent = piece.title;
-    document.getElementById("modal-period").textContent = piece.period;
+    document.getElementById("modal-period").innerHTML = esc(piece.period) + (piece.sold ? ' <span class="sold-badge">Sold</span>' : '');
     document.getElementById("modal-origin").textContent = piece.origin;
     document.getElementById("modal-dims").textContent = piece.dimensions;
     document.getElementById("modal-desc").textContent = piece.description;
@@ -312,7 +315,7 @@ From: ${data.name}
 Email: ${data.email}
 Piece of interest: ${data.piece || "—"}`;
 
-      const mailto = `mailto:lucacorona53@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const mailto = `mailto:info@antiquetibetanfurniture.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
       // Populate the piece select dynamically if needed
       const status = document.getElementById("form-status");
@@ -321,7 +324,7 @@ Piece of interest: ${data.piece || "—"}`;
       window.location.href = mailto;
 
       setTimeout(() => {
-        status.textContent = "If nothing happens, write to lucacorona53@gmail.com directly.";
+        status.textContent = "If nothing happens, write to info@antiquetibetanfurniture.com directly.";
       }, 2000);
     });
 
