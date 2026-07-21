@@ -131,6 +131,8 @@ body {
   width: 36px;
   height: 36px;
   flex-shrink: 0;
+  filter: invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(0.85);
+  opacity: 0.9;
 }
 .brand-text {
   display: flex;
