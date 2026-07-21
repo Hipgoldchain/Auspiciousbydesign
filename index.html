@@ -39,7 +39,19 @@
 
       <nav class="nav" aria-label="Primary">
         <a href="#collection">Collection</a>
-        <a href="#story">Our Story</a>
+        <div class="nav-dropdown-wrap">
+          <a href="#story" class="nav-dropdown-trigger">Our Story</a>
+          <div class="nav-dropdown" aria-label="Story chapters">
+            <a href="#story-introduction">Introduction</a>
+            <a href="#story-history">History &amp; Origins</a>
+            <a href="#story-silk-road">The Silk Road</a>
+            <a href="#story-market">The Market</a>
+            <a href="#story-exhibition">First Exhibition</a>
+            <a href="#story-style">Tibetan Style</a>
+            <a href="#story-dealer">The Dealer</a>
+            <a href="#story-epilogue">Epilogue</a>
+          </div>
+        </div>
         <a href="#enquire">Enquire</a>
       </nav>
 
@@ -52,7 +64,25 @@
   <!-- Mobile drawer -->
   <aside class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
     <a href="#collection">Collection</a>
-    <a href="#story">Our Story</a>
+    <div class="drawer-story-wrap">
+      <button class="drawer-story-toggle" aria-expanded="false" aria-controls="drawer-story-sub">
+        Our Story
+        <svg class="drawer-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <a href="#story" class="drawer-story-main">View Full Story</a>
+      <div class="drawer-story-sub" id="drawer-story-sub">
+        <a href="#story-introduction">Introduction</a>
+        <a href="#story-history">History &amp; Origins</a>
+        <a href="#story-silk-road">The Silk Road</a>
+        <a href="#story-market">The Market</a>
+        <a href="#story-exhibition">First Exhibition</a>
+        <a href="#story-style">Tibetan Style</a>
+        <a href="#story-dealer">The Dealer</a>
+        <a href="#story-epilogue">Epilogue</a>
+      </div>
+    </div>
     <a href="#enquire">Enquire</a>
   </aside>
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
@@ -150,7 +180,7 @@
 
       <!-- ── Introduction ────────────────────────────── -->
       <div class="story-block">
-        <h3>Introduction</h3>
+        <h3 id="story-introduction">Introduction</h3>
         <p>
           As Tibet opened cautiously to the outside world in the 1980s, most visiting foreigners were
           stunned by the rugged beauty of the landscape, the extent of the destruction wreaked on the
@@ -197,7 +227,7 @@
 
       <!-- ── History and Origins ─────────────────────── -->
       <div class="story-block">
-        <h3>History and Origins of Tibetan Furniture Design</h3>
+        <h3 id="story-history">History and Origins of Tibetan Furniture Design</h3>
         <p>
           The single most important event that transformed Tibetan culture was the introduction of Buddhism
           as the state religion in the 7th Century by Emperor Songsten Gampo and his two foreign
@@ -225,7 +255,7 @@
 
       <!-- ── The Silk Road ───────────────────────────── -->
       <div class="story-block">
-        <h3>The Silk Road</h3>
+        <h3 id="story-silk-road">The Silk Road</h3>
         <p>
           One of the main routes on the Silk Road that went from Chang&rsquo;an through Samarkand,
           Central Asia, to Palmyra in modern day Syria and then on to Europe, skirted just North of
@@ -266,7 +296,7 @@
 
       <!-- ── Market History ──────────────────────────── -->
       <div class="story-block">
-        <h3>A Brief History of the Market in Tibetan Furniture</h3>
+        <h3 id="story-market">A Brief History of the Market in Tibetan Furniture</h3>
         <p>
           For centuries, Lhasa was an important trading centre between the Indian subcontinent to the
           South, China to the East, and Central Asia to the North-West. This trade came to an abrupt halt
@@ -300,7 +330,7 @@
 
       <!-- ── The First Exhibition ────────────────────── -->
       <div class="story-block">
-        <h3>The First Exhibition</h3>
+        <h3 id="story-exhibition">The First Exhibition</h3>
         <p>
           The first ever exhibition of Tibetan furniture was held at the Pacific Asia Museum in
           Pasadena, California between November 2004 and February 2005. This exhibition took
@@ -316,7 +346,7 @@
 
       <!-- ── Tibetan Style ───────────────────────────── -->
       <div class="story-block">
-        <h3>Tibetan Style</h3>
+        <h3 id="story-style">Tibetan Style</h3>
         <p>
           Tibet absorbed outside influences in the form of religion from India and aesthetics from Kashmir,
           Nepal, Central Asia and China, but in the process created works of art that were unquestionably
@@ -340,7 +370,7 @@
 
       <!-- ── The Dealer's Experience ─────────────────── -->
       <div class="story-block">
-        <h3>The Dealer&rsquo;s Experience</h3>
+        <h3 id="story-dealer">The Dealer&rsquo;s Experience</h3>
         <p>
           Every collector knows the excitement of entering an Aladdin&rsquo;s cave filled with hidden treasures
           and intriguing finds. Stepping into the house of a Tibetan dealer offers a unique glimpse into
@@ -390,7 +420,7 @@
 
       <!-- ── Epilogue ────────────────────────────────── -->
       <div class="story-block">
-        <h3>Epilogue</h3>
+        <h3 id="story-epilogue">Epilogue</h3>
         <p>
           Following the inevitable natural law of impermanence, the flourishing trade in Tibetan
           furniture of the 1990s and early 2000s between Tibet and Nepal slowed to a trickle.

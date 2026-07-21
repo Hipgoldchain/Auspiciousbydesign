@@ -313,6 +313,22 @@
     });
   }
 
+  // ─── DRAWER HELPERS (shared) ─────────────────────────────
+  function closeDrawer() {
+    const toggle = document.getElementById("nav-toggle");
+    const drawer = document.getElementById("nav-drawer");
+    const backdrop = document.getElementById("drawer-backdrop");
+    if (toggle) {
+      toggle.classList.remove("open");
+      toggle.setAttribute("aria-label", "Open menu");
+    }
+    if (drawer) {
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+    }
+    if (backdrop) backdrop.classList.remove("open");
+  }
+
   // ─── HEADER SCROLL STATE ─────────────────────────────────
   function wireHeader() {
     const header = document.querySelector(".site-header");
@@ -327,26 +343,17 @@
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    function openDrawer() {
-      toggle.classList.add("open");
-      drawer.classList.add("open");
-      drawer.setAttribute("aria-hidden", "false");
-      toggle.setAttribute("aria-label", "Close menu");
-      if (backdrop) backdrop.classList.add("open");
-    }
-
-    function closeDrawer() {
-      toggle.classList.remove("open");
-      drawer.classList.remove("open");
-      drawer.setAttribute("aria-hidden", "true");
-      toggle.setAttribute("aria-label", "Open menu");
-      if (backdrop) backdrop.classList.remove("open");
-    }
-
     if (toggle && drawer) {
       toggle.addEventListener("click", () => {
-        if (drawer.classList.contains("open")) closeDrawer();
-        else openDrawer();
+        if (drawer.classList.contains("open")) {
+          closeDrawer();
+        } else {
+          toggle.classList.add("open");
+          drawer.classList.add("open");
+          drawer.setAttribute("aria-hidden", "false");
+          toggle.setAttribute("aria-label", "Close menu");
+          if (backdrop) backdrop.classList.add("open");
+        }
       });
       drawer.querySelectorAll("a").forEach(a => {
         a.addEventListener("click", closeDrawer);
@@ -357,7 +364,7 @@
     }
 
     // Active nav link based on scroll position
-    const links = document.querySelectorAll(".nav a[href^='#']");
+    const links = document.querySelectorAll(".nav > a[href^='#'], .nav .nav-dropdown-trigger[href^='#']");
     const sections = Array.from(links).map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 
     function updateActive() {
@@ -368,6 +375,32 @@
     }
     window.addEventListener("scroll", updateActive, { passive: true });
     updateActive();
+  }
+
+  // ─── STORY SUB-CHAPTER NAVIGATION ─────────────────────────
+  function wireStoryDropdown() {
+    const toggle = document.querySelector(".drawer-story-toggle");
+    const subMenu = document.getElementById("drawer-story-sub");
+    const mainLink = document.querySelector(".drawer-story-main");
+
+    // Mobile drawer: toggle sub-chapters
+    if (toggle && subMenu) {
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        subMenu.classList.toggle("open");
+      });
+    }
+
+    // Close drawer when any sub-chapter link is clicked
+    if (subMenu) {
+      subMenu.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", closeDrawer);
+      });
+    }
+    if (mainLink) {
+      mainLink.addEventListener("click", closeDrawer);
+    }
   }
 
   // ─── BACK TO TOP ──────────────────────────────────────────
@@ -494,6 +527,7 @@ Piece of interest: ${data.piece || "—"}`;
     wireHeader();
     wireForm();
     wireBackToTop();
+    wireStoryDropdown();
   }
 
   if (document.readyState === "loading") {
