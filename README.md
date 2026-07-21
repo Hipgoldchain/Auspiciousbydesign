@@ -2,7 +2,7 @@
 
 A private online showroom for a collection of antique Tibetan painted furniture, gathered over two decades in Kathmandu, Nepal.
 
-**Live site:** _(once deployed)_ https://hipgoldchain.github.io/Auspiciousbydesign/
+**Live site:** https://hipgoldchain.github.io/Auspiciousbydesign/
 
 ---
 
@@ -16,7 +16,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 ├── css/
 │   └── style.css           Stylesheet
 ├── js/
-│   ├── catalogue.js        All 81 plate entries (data)
+│   ├── catalogue.js        All 82 plate entries (data)
 │   └── app.js              Renders, filters, search, modal, form
 └── images/
     ├── plates/             Full-size photographs (1200px max)
@@ -26,16 +26,17 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 
 ## Features
 
-- **Full catalogue of 81 plates** across four categories: Monastic Trunks & Boxes, Leather Trunks, Cabinets & Altars, Tables
+- **Full catalogue of 82 plates** across four categories: Monastic Trunks & Boxes, Leather Trunks, Cabinets & Altars, Tables
 - **Filter by category and period**, plus free-text search
 - **Click any piece** to open a detail modal with description and dimensions
+- **Sold indicators** — pieces that have been sold display a badge on the card and in the modal
 - **Enquiry form** that opens the visitor's mail client pre-filled and addressed to `info@antiquetibetanfurniture.com`
 - **Mobile-optimised navigation** with a slide-in drawer
 - **Lazy-loaded images** so the site stays fast even with the full catalogue
 
 ## Image status
 
-18 plates currently have real photographs (extracted from the v4 preview PDF). The remaining plates display an elegant placeholder card with the description and dimensions visible. **To add a photograph for any plate:**
+19 plates currently have real photographs. The remaining plates display an elegant placeholder card with the description and dimensions visible. **To add a photograph for any plate:**
 
 1. Save the photo as `plate_NN.jpg` in `images/plates/` (where `NN` is the zero-padded plate number, e.g. `plate_14.jpg`)
 2. Save a thumbnail version (max 600px wide) of the same name in `images/thumbs/`
@@ -90,8 +91,9 @@ Opening `index.html` directly in the browser (`file://`) also works, but a local
 ## Editing content
 
 - **Catalogue entries** live in `js/catalogue.js` — easy to edit titles, descriptions, dimensions
+- **Marking a piece as sold:** find the plate in `js/catalogue.js` and add `sold: true` to the entry
 - **Story text** lives in `index.html` inside the `<section class="story">` block
-- **Contact details** are in two places: `index.html` (the contact section) and `js/app.js` (the mailto fallback)
+- **Contact details** are in three places: `index.html` (the contact section), `js/app.js` (the mailto fallback), and `README.md`
 
 ## Credits
 
