@@ -6,7 +6,7 @@
 
 /* ─── Reset ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body { min-height: 100vh; overflow-x: clip; }
 img { display: block; max-width: 100%; height: auto; }
 button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
@@ -80,6 +80,20 @@ body {
 }
 
 ::selection { background: var(--brick); color: var(--ink); }
+
+/* Focus-visible — keyboard accessibility */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.card:focus-visible {
+  outline-offset: -2px;
+  border-color: var(--gold);
+  background: var(--bg-lift);
+}
+.chip:focus-visible { outline-offset: 1px; }
+.btn:focus-visible { outline-offset: 2px; }
+.modal-close:focus-visible { outline-offset: 2px; }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -279,10 +293,10 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("../images/landscapes/hero.jpg");
+  background-image: url("../images/landscapes/hero.jpg?v=2");
   background-size: cover;
   background-position: center 35%;
-  filter: brightness(0.55) saturate(0.92);
+  filter: brightness(0.72) saturate(1.05);
   z-index: -2;
   animation: heroPan 30s ease-in-out infinite alternate;
 }
@@ -295,10 +309,10 @@ body {
   inset: 0;
   background:
     linear-gradient(180deg,
-      rgba(0,0,0,0.5) 0%,
-      rgba(0,0,0,0.15) 35%,
-      rgba(0,0,0,0.4) 65%,
-      rgba(0,0,0,0.92) 100%
+      rgba(0,0,0,0.35) 0%,
+      rgba(0,0,0,0.08) 35%,
+      rgba(0,0,0,0.25) 65%,
+      rgba(0,0,0,0.88) 100%
     );
   z-index: -1;
 }
@@ -641,6 +655,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(1.17);
   transition: transform 1.2s var(--ease);
 }
 
@@ -768,9 +783,41 @@ body {
    STORY (OUR STORY)
    ═══════════════════════════════════════════════════════════ */
 .story {
-  padding: var(--pad-lg) var(--pad-md);
+  padding: var(--pad-lg) var(--pad-md) 0;
   border-top: 1px solid var(--rule);
   scroll-margin-top: 80px;
+}
+.story-image {
+  max-width: 1100px;
+  margin: 0 auto 3.5rem;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.story-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.9) saturate(1.1);
+}
+.story-quote-band {
+  margin: 2rem 0;
+  overflow: hidden;
+  max-height: 280px;
+  position: relative;
+}
+.story-quote-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.4) 100%);
+}
+.story-quote-band img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(0.8) saturate(1.1);
 }
 .story-inner {
   max-width: 720px;
@@ -1136,7 +1183,7 @@ body {
   padding: 2rem;
   min-height: 420px;
 }
-.modal-img img { max-width: 100%; max-height: 70vh; object-fit: contain; }
+.modal-img img { max-width: 100%; max-height: 70vh; object-fit: contain; filter: brightness(1.17); }
 .modal-img.placeholder {
   background:
     radial-gradient(circle at 50% 50%, rgba(166, 61, 47, 0.05) 0%, transparent 70%),
