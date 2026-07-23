@@ -16,7 +16,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 ├── css/
 │   └── style.css           Stylesheet
 ├── js/
-│   ├── catalogue.js        All 82 plate entries (data)
+│   ├── catalogue.js        All 81 plate entries (data)
 │   └── app.js              Renders, filters, search, modal, form
 └── images/
     ├── plates/             Full-size photographs (1200px max)
@@ -26,7 +26,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 
 ## Features
 
-- **Full catalogue of 82 plates** across four categories: Monastic Trunks & Boxes, Leather Trunks, Cabinets & Altars, Tables
+- **Full catalogue of 81 plates** across four categories: Monastic Trunks & Boxes, Leather Trunks, Cabinets & Altars, Tables
 - **Filter by category and period**, plus free-text search
 - **Click any piece** to open a detail modal with description and dimensions
 - **Sold indicators** — pieces that have been sold display a badge on the card and in the modal
@@ -36,7 +36,7 @@ A private online showroom for a collection of antique Tibetan painted furniture,
 
 ## Image status
 
-All 82 plates have photographs. If a new plate is added, a placeholder card with description and dimensions will display until a photo is provided. **To add a photograph for any plate:**
+All 81 plates have photographs. If a new plate is added, a placeholder card with description and dimensions will display until a photo is provided. **To add a photograph for any plate:**
 
 1. Save the photo as `plate_NN.jpg` in `images/plates/` (where `NN` is the zero-padded plate number, e.g. `plate_14.jpg`)
 2. Save a thumbnail version (max 600px wide) of the same name in `images/thumbs/`
@@ -55,8 +55,8 @@ The following plates are marked as sold. A brick-red "Sold" badge appears on the
 | 27    | SB151 | Monastic Box       |
 | 50    | SC388 | Kham Cabinet       |
 | 52    | SC837 | Kham Altar Cabinet |
-| 75    | SC386 | Yangam Cabinet     |
-| 95    | ST623 | Table              |
+| 74    | SC386 | Yangam Cabinet     |
+| 94    | ST623 | Table              |
 
 To mark another piece as sold, find its entry in `js/catalogue.js` and add `sold: true`.
 
@@ -97,6 +97,17 @@ python3 -m http.server 8000
 - **Marking a piece as sold:** find the plate in `js/catalogue.js` and add `sold: true` to the entry
 - **Story text** lives in `index.html` inside the `<section class="story">` block
 - **Contact details** are in three places: `index.html` (the contact section), `js/app.js` (the mailto fallback), and this README
+
+## Change log
+
+### July 2026
+
+- **Hero image:** Replaced with Tibetan prayer flags photograph (credit: Luo Lei / Unsplash)
+- **Favicon:** Regenerated from endless knot source with correct aspect ratio — previously stretched to fill a square, now properly proportioned with padding
+- **Anchor scroll fix:** Added `scroll-padding-top: 5rem` to `html` so that nav links (`#collection`, `#story`, `#silkroad`, `#enquire`) scroll to the correct position below the fixed header instead of being hidden behind it
+- **CSS cache-busting:** Added `?v=2` query parameter to hero background image URL to bypass browser cache
+- **Removed Plate 65** (back view of SC81 Pegam Table) — the only piece with front and back across two plates. All subsequent plates renumbered down by 1 (66→65 through 95→94). Total plates now 81
+- **Enquiry text updated** to note EB108P (Plates 43 & 44) is in the UK; all other pieces in Kathmandu, Nepal
 
 ## Credits
 
