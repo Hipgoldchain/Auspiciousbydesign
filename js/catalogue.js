@@ -8,7 +8,7 @@ const CATALOGUE = [
   // ════════════════════════════════════════════════
   // I. MONASTIC TRUNKS & BOXES (Plates 13–44)
   // ════════════════════════════════════════════════
-  { plate: 13, category: "boxes", title: '"Lhoka Box"', period: "15th–16th Century", origin: "Southern Tibet", dimensions: "34 × 136 · H 67cm", code: "SB126", hasImage: true,
+  { plate: 13, category: "boxes", title: '"Lhoka Box"', period: "15th–16th Century", origin: "Southern Tibet", dimensions: "34 × 136 · H 67cm", code: "SB126", hasImage: true, sold: true,
     description: 'A classic early "Lhoka box" with vertical side panels extending beyond the horizontal panel to form short legs. The front displays a splendid flaming jewel in the central cartouche, representing the Three Jewels of Tibetan Buddhism — the Buddha, the teachings, and the community. A bold, colourful pattern delimits the plain field, with circular Wheels of Joy in the four corners.' },
   { plate: 14, category: "boxes", title: '"Lhoka Box"', period: "15th–16th Century", origin: "Southern Tibet", dimensions: "40 × 117 · H 61cm", code: "SB289", hasImage: true,
     description: 'A scallop-shaped section carved around the front and sides of this trapezoid box. The central lobed frame contains a lotus flower emerging from stylized scrolling waves, holding the Sanskrit syllable "OM" in the Lantsha script, with clouds above. The cinnabar red field contrasts with simple corner scrolls.' },
@@ -34,7 +34,7 @@ const CATALOGUE = [
     description: 'The Six Symbols of Long Life: Shou Lao, the Chinese god of longevity, sits in the centre as an old man counting his prayers. Behind him: the Tree and the Immutable Rock. Around him: the Water, the Crane, and the Deer. The composition reads as a single cycle of nourishment and life.' },
   { plate: 26, category: "boxes", title: "Pair of Monastic Boxes", period: "16th–17th Century", origin: "Central Tibet", dimensions: "33 × 84 · H 44cm", code: "SB230P", hasImage: true,
     description: 'The pair to Plate 25. At centre is Vaishravana, leader of the Four Great Kings and guardian of the North. As wealth-bestowing god, he holds a mongoose that vomits jewels into a golden dish. He sits on a lion and holds a heavenly banner of billowing silks.' },
-  { plate: 27, category: "boxes", title: "Monastic Box", period: "17th–18th Century", origin: "Central Tibet", dimensions: "48 × 129 · H 59cm", code: "SB151", hasImage: true,
+  { plate: 27, category: "boxes", title: "Monastic Box", period: "17th–18th Century", origin: "Central Tibet", dimensions: "48 × 129 · H 59cm", code: "SB151", hasImage: true, sold: true,
     description: 'A unique black-and-white colour scheme on a classic design. Within the central lobed medallion, two contorted dragons safeguard a vase of flaming jewels and auspicious symbols. One dragon\'s body is scaled, the other dotted — perhaps differentiating male and female. Lotus flowers grow from their hair.' },
   { plate: 28, category: "boxes", title: "Monastic Box", period: "18th Century", origin: "Central Tibet", dimensions: "48 × 125 · H 59cm", code: "SB133", hasImage: true,
     description: 'The design is based on the Lantsha script, used by Tibetans for writing mantras. At the centre appears the third letter of the Tibetan alphabet, "ga" — a practical way of labelling the box, executed in gilded kyung bur raised gesso.' },
@@ -80,7 +80,7 @@ const CATALOGUE = [
     description: 'Exceptional taste of Tibetan craftsmen on display. Embossed leather patches decorated with silver and gold. Four bone-shaped, brocade-covered patches ornament the front. The latch and irons are inlaid with silver to produce attractive damascened plates — characteristic of work from Derge in Kham.' },
 
   // ════════════════════════════════════════════════
-  // III. CABINETS & ALTARS (Plates 47–75)
+  // III. CABINETS & ALTARS (Plates 47–74)
   // ════════════════════════════════════════════════
   { plate: 47, category: "cabinets", title: "Pegam Cabinet", period: "18th Century", origin: "Central Tibet", dimensions: "42 × 80 · H 99cm", code: "SC836", hasImage: true,
     description: 'A pegam-style cabinet with scalloped panels around the top, back and sides. Beautifully pictorial: the Six Symbols of Longevity, a high dignitary receiving offerings, the Chinese monk Hvashang surrounded by children, a forest scene with deer and wolves, and a caravan crossing a wooden bridge into a trading city on stilts.' },
@@ -88,11 +88,11 @@ const CATALOGUE = [
     description: 'A characteristic scalloped back and side panels. The front has one door and two fixed panels decorated with bold lotus blossom and green leaves on red. The sides depict a gakyil — Tibetan Wheel of Joy — in four swirling colours representing earth, water, fire and air.' },
   { plate: 49, category: "cabinets", title: "Kham Cabinet", period: "19th Century", origin: "Eastern Tibet", dimensions: "35 × 144 · H 94cm", code: "SC225", hasImage: true,
     description: 'Typical of Kham — thick frame, bold design, mainly decorative. On the side panels, a female deer and male deer (perhaps a unicorn). Centre: a Wheel of Joy surrounded by a dramatic continuous swastika pattern. Lower panels show peacocks bent to eat flowers, and a lotus holding a single jewel.' },
-  { plate: 50, category: "cabinets", title: "Kham Cabinet", period: "19th Century", origin: "Eastern Tibet", dimensions: "32 × 143 · H 92cm", code: "SC388", hasImage: true,
+  { plate: 50, category: "cabinets", title: "Kham Cabinet", period: "19th Century", origin: "Eastern Tibet", dimensions: "32 × 143 · H 92cm", code: "SC388", hasImage: true, sold: true,
     description: 'A striking cabinet with five drawers and a sliding door. On the door is a large cluster of jewels from the Seven Jewels of Royal Power; the other six appear on the panels: the Precious General, Wheel, Queen, King, Jewel, Elephant, and Horse — each carrying jewels.' },
   { plate: 51, category: "cabinets", title: "Kham Altar", period: "19th Century", origin: "Eastern Tibet", dimensions: "40 × 102 · H 140cm", code: "SC203", hasImage: true,
     description: 'A cupboard whose exterior decoration suggests it stored wealth vases and torma, while inside, carved niches indicate use as an altar. On each lower door panel: a snow lion with flowing green mane dancing on flaming jewels, holding a jewel in one hand and coral in the other.' },
-  { plate: 52, category: "cabinets", title: "Kham Altar Cabinet", period: "19th Century", origin: "Eastern Tibet", dimensions: "48 × 237 · H 86cm", code: "SC837", hasImage: true,
+  { plate: 52, category: "cabinets", title: "Kham Altar Cabinet", period: "19th Century", origin: "Eastern Tibet", dimensions: "48 × 237 · H 86cm", code: "SC837", hasImage: true, sold: true,
     description: 'A stunning cabinet from a set, probably the base for an altar. Seven drawers above, seven fixed panels below, two fixed and six opening panels in the middle. The lower panels show a continuous snowflake-shaped flower pattern in alternating green and blue on red.' },
   { plate: 53, category: "cabinets", title: "Cabinet", period: "19th Century", origin: "Central Tibet", dimensions: "53 × 123 · H 116cm", code: "SC329", hasImage: true,
     description: 'A well-proportioned cabinet with four central doors. Each features a roundel with rag dul (Dutch gold) background and an oblong lobed cartouche containing a polychrome phoenix in full flight amongst clouds. Side panels show a flower in a flower-shaped frame; lower panels carry a continuous swastika.' },
@@ -136,7 +136,7 @@ const CATALOGUE = [
     description: 'Used as an altar with four niches for Buddhist deity images, and a torgam in the central section. The two central doors depict Mahakala\'s wrathful face on red: three bulging eyes, flaming eyebrows and beard in gilded kyung bur, a pig-like nose, and a huge open mouth showing four fangs.' },
   { plate: 73, category: "cabinets", title: "Torgam Cabinet", period: "19th Century", origin: "Central Tibet", dimensions: "31 × 55 · H 62cm", code: "SC821", hasImage: true,
     description: 'A fierce brown wrathful Mahakala head with three bulging eyes, golden flaming eyebrows and moustache, four fangs, and ears with long lobes hung with big jewels. Around his neck: dismembered limbs — arms on one panel, legs and feet on the other. Two snow lions support the torgam from below.' },
-  { plate: 74, category: "cabinets", title: "Yangam Cabinet", period: "19th Century", origin: "Central Tibet", dimensions: "44 × 77 · H 64cm", code: "SC386", hasImage: true,
+  { plate: 74, category: "cabinets", title: "Yangam Cabinet", period: "19th Century", origin: "Central Tibet", dimensions: "44 × 77 · H 64cm", code: "SC386", hasImage: true, sold: true,
     description: 'Almost minimalist for Tibetan taste. One peacock on one door (wings open, tail spread, neck curled up); a dragon on the other (emerging from waves, holding jewels amongst flames, facing the peacock). Both look at the same spot — an extraordinarily restrained composition.' },
 
   // ════════════════════════════════════════════════
@@ -180,7 +180,7 @@ const CATALOGUE = [
     description: 'A row of carved scrolls under the overhanging top, then a red panel with two small rectangles containing scrolling decoration. The main feature: the mythical zipac with sun and moon on his head, two horns, bushy eyebrows, an open mouth without a lower jaw — surrounded by scrolls. Cabriole legs end in elaborate scrolls.' },
   { plate: 93, category: "tables", title: "Table", period: "15th–17th Century", origin: "Central Tibet", dimensions: "38 × 97 · H 43cm", code: "ST625", hasImage: true,
     description: 'In Tibetan: kyisu — "dog-legged" — where the cabriole leg\'s upper convex curve tapers to a concave, ending with carved foliage scrolls. At centre is a large triple jewel emerging from a lotus, with half-palmettes fanning out behind and deep scroll carving on either side.' },
-  { plate: 94, category: "tables", title: "Table", period: "17th Century", origin: "Central Tibet", dimensions: "33 × 79 · H 62cm", code: "ST623", hasImage: true,
+  { plate: 94, category: "tables", title: "Table", period: "17th Century", origin: "Central Tibet", dimensions: "33 × 79 · H 62cm", code: "ST623", hasImage: true, sold: true,
     description: 'A table for placement in front of a raised seat or small throne. Straight back legs and carved front "dog-legs" curling into scrolls at the bottom. The rectangular front panel is interrupted by a carved altar cloth — draped down the front, hanging with perfect folds.' },
 ];
 
