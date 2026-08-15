@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    AUSPICIOUS BY DESIGN — STYLE
-   A refined editorial system: black ground, cream type,
-   tricolour accents (brick, gold, blue) from the catalogue.
+   A refined editorial system on a black ground. Titles, the logo and
+   item numbers are cream; gold is reserved for subtitles and
+   standfirsts. Brick and blue remain categorical accents.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Reset ──────────────────────────────────────────────── */
@@ -164,14 +165,14 @@ body {
   font-size: 1.15rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--gold);
+  color: var(--ink);
 }
 .brand-text .sub {
   font-family: var(--sans);
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--ink-mute);
+  color: var(--gold);
   margin-top: 0.15rem;
 }
 
@@ -336,7 +337,7 @@ body {
   line-height: 0.95;
   font-weight: 400;
   letter-spacing: -0.01em;
-  color: var(--gold);
+  color: var(--ink);
   margin-bottom: 0.5rem;
   opacity: 0;
   animation: fadeUp 1.4s 0.7s var(--ease) forwards;
@@ -347,7 +348,7 @@ body {
   font-weight: 400;
   display: block;
   margin-top: 0.15em;
-  color: var(--gold);
+  color: var(--ink);
 }
 .hero-rule {
   width: 90px;
@@ -423,7 +424,7 @@ body {
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.015em;
-  color: var(--gold);
+  color: var(--ink);
 }
 
 /* Filter bar */
@@ -551,7 +552,7 @@ body {
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.1;
-  color: var(--gold);
+  color: var(--ink);
 }
 .category-meta {
   text-align: right;
@@ -642,7 +643,7 @@ body {
 .card:hover .card-img img,
 .card:focus-visible .card-img img { transform: scale(1.04); }
 .card:hover .card-ref,
-.card:focus-visible .card-ref { color: var(--gold); }
+.card:focus-visible .card-ref { color: var(--ink); }
 
 .card-img {
   aspect-ratio: 4 / 3;
@@ -828,7 +829,7 @@ body {
   font-size: 1.5rem;
   font-weight: 400;
   font-style: normal;
-  color: var(--gold);
+  color: var(--ink);
   margin-bottom: 1.25rem;
 }
 .story-block h3[id] { scroll-margin-top: 100px; }
@@ -915,7 +916,7 @@ body {
   line-height: 1.05;
   margin-bottom: 1.5rem;
   letter-spacing: -0.015em;
-  color: var(--gold);
+  color: var(--ink);
 }
 .enquiry-info p {
   font-size: 1rem;
@@ -1074,7 +1075,7 @@ body {
   font-family: var(--display);
   font-size: 1.5rem;
   font-style: normal;
-  color: var(--gold);
+  color: var(--ink);
   margin-bottom: 0.5rem;
 }
 .footer-brand .sub {
@@ -1257,7 +1258,7 @@ body {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.28em;
-  color: var(--gold);
+  color: var(--ink);
   margin-bottom: 1rem;
 }
 .modal-title {
