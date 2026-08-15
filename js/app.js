@@ -114,7 +114,7 @@
         ${soldBanner}
         ${viewCount}
         <div class="card-body">
-          <div class="card-plate">No. ${piece.no} · ${piece.code}</div>
+          <div class="card-ref">No. ${piece.no} · ${piece.code}</div>
           <h3 class="card-title">${esc(piece.title)}</h3>
           <div class="card-period">${esc(piece.period)}</div>
           <div class="card-origin">${esc(piece.origin)}</div>
