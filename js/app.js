@@ -78,8 +78,7 @@
       c.setAttribute("role", "button");
 
       c.addEventListener("click", () => {
-        const plate = parseInt(c.dataset.plate);
-        const piece = CATALOGUE.find(p => p.plate === plate);
+        const piece = CATALOGUE.find(p => p.code === c.dataset.code);
         if (piece) openModal(piece);
       });
 
@@ -98,21 +97,24 @@
   }
 
   function renderCard(piece, idx) {
-    const imgPath = piece.hasImage
-      ? `images/thumbs/plate_${String(piece.plate).padStart(2, "0")}.jpg`
+    const imgPath = piece.images && piece.images.length
+      ? `images/thumbs/${piece.images[0].file}`
       : null;
     const imgPart = imgPath
       ? `<div class="card-img"><img src="${imgPath}" alt="${esc(piece.title)}" loading="lazy"></div>`
       : `<div class="card-img placeholder">${PLACEHOLDER_SVG}</div>`;
 
     const soldBanner = piece.sold ? `<div class="sold-banner" aria-label="Sold"><span>Sold</span></div>` : "";
+    const viewCount = piece.images.length > 1
+      ? `<div class="card-views">${piece.images.length} views</div>` : "";
 
     return `
-      <article class="card${piece.sold ? " sold" : ""}" data-plate="${piece.plate}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
+      <article class="card${piece.sold ? " sold" : ""}" data-code="${piece.code}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
         ${imgPart}
         ${soldBanner}
+        ${viewCount}
         <div class="card-body">
-          <div class="card-plate">Plate ${piece.plate} · ${piece.code}</div>
+          <div class="card-plate">No. ${piece.no} · ${piece.code}</div>
           <h3 class="card-title">${esc(piece.title)}</h3>
           <div class="card-period">${esc(piece.period)}</div>
           <div class="card-origin">${esc(piece.origin)}</div>
@@ -136,8 +138,7 @@
       let visibleCount = 0;
 
       cards.forEach(c => {
-        const plate = parseInt(c.dataset.plate);
-        const piece = CATALOGUE.find(p => p.plate === plate);
+        const piece = CATALOGUE.find(p => p.code === c.dataset.code);
         if (!piece) return;
 
         let match = true;
@@ -215,24 +216,67 @@
   // ─── MODAL ────────────────────────────────────────────────
   let previousFocus = null;
 
+  // An item may be photographed from several angles, or alongside details.
+  // Render the first image large, with selectable thumbnails beneath it when
+  // there is more than one.
+  function renderModalImages(piece, imgWrap) {
+    const imgs = (piece.images || []).filter(Boolean);
+
+    if (!imgs.length) {
+      imgWrap.className = "modal-img placeholder";
+      imgWrap.innerHTML = PLACEHOLDER_SVG;
+      return;
+    }
+
+    imgWrap.className = "modal-img";
+
+    if (imgs.length === 1) {
+      imgWrap.innerHTML =
+        `<img src="images/plates/${imgs[0].file}" alt="${esc(piece.title)}">`;
+      return;
+    }
+
+    imgWrap.innerHTML = `
+      <img id="modal-img-main" src="images/plates/${imgs[0].file}"
+           alt="${esc(piece.title)} — ${esc(imgs[0].label)}">
+      <div class="modal-img-caption" id="modal-img-caption">${esc(imgs[0].label)}</div>
+      <div class="modal-thumbs" role="tablist" aria-label="Other views of this item">
+        ${imgs.map((im, i) => `
+          <button type="button" class="modal-thumb${i === 0 ? " active" : ""}"
+                  role="tab" aria-selected="${i === 0}" data-i="${i}"
+                  title="${esc(im.label)}">
+            <img src="images/thumbs/${im.file}" alt="${esc(im.label)}">
+          </button>`).join("")}
+      </div>`;
+
+    const main = imgWrap.querySelector("#modal-img-main");
+    const caption = imgWrap.querySelector("#modal-img-caption");
+
+    imgWrap.querySelectorAll(".modal-thumb").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const im = imgs[parseInt(btn.dataset.i)];
+        main.src = `images/plates/${im.file}`;
+        main.alt = `${piece.title} — ${im.label}`;
+        caption.textContent = im.label;
+        imgWrap.querySelectorAll(".modal-thumb").forEach(b => {
+          b.classList.toggle("active", b === btn);
+          b.setAttribute("aria-selected", b === btn);
+        });
+      });
+    });
+  }
+
   function openModal(piece) {
     previousFocus = document.activeElement;
 
     const overlay = document.getElementById("modal");
     const imgWrap = document.getElementById("modal-img");
-    const imgPath = piece.hasImage
-      ? `images/plates/plate_${String(piece.plate).padStart(2, "0")}.jpg`
-      : null;
+    renderModalImages(piece, imgWrap);
 
-    if (imgPath) {
-      imgWrap.className = "modal-img";
-      imgWrap.innerHTML = `<img src="${imgPath}" alt="${esc(piece.title)}">`;
-    } else {
-      imgWrap.className = "modal-img placeholder";
-      imgWrap.innerHTML = PLACEHOLDER_SVG;
-    }
-
-    document.getElementById("modal-eyebrow").textContent = `Plate ${piece.plate} · ${piece.code}`;
+    const bookRef = piece.bookImages && piece.bookImages.length
+      ? ` · Book image${piece.bookImages.length > 1 ? "s" : ""} ${piece.bookImages.join(" & ")}`
+      : "";
+    document.getElementById("modal-eyebrow").textContent = `No. ${piece.no} · ${piece.code}${bookRef}`;
     document.getElementById("modal-title").textContent = piece.title;
     document.getElementById("modal-period").innerHTML = esc(piece.period) + (piece.sold ? ' <span class="sold-banner-inline">Sold</span>' : '');
     document.getElementById("modal-origin").textContent = piece.origin;
@@ -245,7 +289,7 @@
       closeModal();
       const select = document.getElementById("form-piece");
       if (select) {
-        const optVal = `Plate ${piece.plate} — ${piece.title}`;
+        const optVal = `No. ${piece.no} (${piece.code}) — ${piece.title}`;
         let exists = false;
         for (const o of select.options) { if (o.value === optVal) { exists = true; break; } }
         if (!exists) {
@@ -495,7 +539,7 @@ Piece of interest: ${data.piece || "—"}`;
       });
     });
 
-    // Populate piece select with all plates
+    // Populate piece select with all items
     const select = document.getElementById("form-piece");
     if (select) {
       const allOpt = document.createElement("option");
@@ -508,7 +552,7 @@ Piece of interest: ${data.piece || "—"}`;
         group.label = cat.label;
         CATALOGUE.filter(p => p.category === cat.id).forEach(piece => {
           const o = document.createElement("option");
-          const val = `Plate ${piece.plate} — ${piece.title}`;
+          const val = `No. ${piece.no} (${piece.code}) — ${piece.title}`;
           o.value = val;
           o.textContent = val;
           group.appendChild(o);
