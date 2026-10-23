@@ -10,7 +10,6 @@
   // ─── STATE ────────────────────────────────────────────────
   const state = {
     activeCategory: "all",
-    activePeriod: "all",
     searchQuery: "",
   };
 
@@ -56,7 +55,7 @@
             </div>
           </div>
           <p class="category-sub">${esc(cat.subtitle)}</p>
-          ${cat.essay ? `<div class="category-essay">${cat.essay.split('\n\n').map(p => `<p>${esc(p)}</p>`).join('')}</div>` : ''}
+          ${cat.essay ? `<div class="category-essay"><p>${esc(cat.essay)}</p></div>` : ''}
           <div class="grid" data-grid="${cat.id}">
             ${items.map((piece, i) => renderCard(piece, i)).join("")}
           </div>
@@ -127,7 +126,6 @@
   // ─── FILTERING ────────────────────────────────────────────
   function applyFilters() {
     const cat = state.activeCategory;
-    const period = state.activePeriod;
     const q = state.searchQuery.trim().toLowerCase();
     const showingAll = cat === "all";
     let totalVisible = 0;
@@ -143,16 +141,6 @@
 
         let match = true;
         if (!showingAll && piece.category !== cat) match = false;
-        if (period !== "all") {
-          const century = getEarliestCentury(piece.period);
-          if (period === "15-17") {
-            if (!(century >= 15 && century <= 17)) match = false;
-          } else if (period === "18") {
-            if (century !== 18) match = false;
-          } else if (period === "19-20") {
-            if (!(century >= 19 && century <= 20)) match = false;
-          }
-        }
         if (q) {
           const hay = (piece.title + " " + piece.description + " " + piece.origin + " " + piece.code).toLowerCase();
           if (!hay.includes(q)) match = false;
@@ -170,10 +158,6 @@
       section.style.display = (catMatch && visibleCount > 0) ? "" : "none";
 
       if (catMatch) totalVisible += visibleCount;
-
-      // Only show essay when viewing a single category (not "All")
-      const essay = section.querySelector(".category-essay");
-      if (essay) essay.style.display = (!showingAll && cat === id) ? "" : "none";
     });
 
     // Global empty state when no cards match at all
@@ -184,22 +168,18 @@
   }
 
   function wireFilters() {
-    document.querySelectorAll(".chip[data-cat-filter]").forEach(chip => {
-      chip.addEventListener("click", () => {
-        document.querySelectorAll(".chip[data-cat-filter]").forEach(c => c.classList.remove("active"));
-        chip.classList.add("active");
-        state.activeCategory = chip.dataset.catFilter;
+    const dropdown = document.getElementById("cat-dropdown");
+    if (dropdown) {
+      dropdown.addEventListener("change", () => {
+        state.activeCategory = dropdown.value;
         applyFilters();
+        // Scroll to the selected category if not "all"
+        if (dropdown.value !== "all") {
+          const target = document.getElementById("cat-" + dropdown.value);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
-    });
-    document.querySelectorAll(".chip[data-period-filter]").forEach(chip => {
-      chip.addEventListener("click", () => {
-        document.querySelectorAll(".chip[data-period-filter]").forEach(c => c.classList.remove("active"));
-        chip.classList.add("active");
-        state.activePeriod = chip.dataset.periodFilter;
-        applyFilters();
-      });
-    });
+    }
     const search = document.getElementById("search-input");
     if (search) {
       let timer;
@@ -410,6 +390,7 @@
     // Active nav link based on scroll position
     const links = document.querySelectorAll(".nav > a[href^='#'], .nav .nav-dropdown-trigger[href^='#']");
     const sections = Array.from(links).map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+    if (!sections.length) return;
 
     function updateActive() {
       const y = window.scrollY + 150;

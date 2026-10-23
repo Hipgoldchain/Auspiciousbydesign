@@ -417,10 +417,14 @@ const CATALOGUE = [
 ];
 
 const CATEGORIES = [
-  { id: "boxes",    label: "Tibetan Monastic Trunks & Boxes",     subtitle: "Sacred forms of storage, painted with dragons, jewels & cloud scrolls.", period: "15th – 19th Century" },
-  { id: "leather",  label: "Tibetan Leather Trunks",              subtitle: "For the road — travelled forms, tooled and burnished.", period: "18th – 19th Century" },
-  { id: "cabinets", label: "Tibetan Cabinets & Altars",           subtitle: "Structures for the sacred and the daily — carved, layered, painted.", period: "18th – 20th Century" },
-  { id: "tables",   label: "Tibetan Tables",                      subtitle: "Decorated to the elevation of the seat — by rank, by rite.", period: "15th – 20th Century" },
+  { id: "boxes",    label: "Tibetan Monastic Trunks & Boxes",     subtitle: "Sacred forms of storage, painted with dragons, jewels & cloud scrolls.", period: "15th – 19th Century",
+    essay: "Large Tibetan monasteries housed thousands of monks and their typical possessions included exquisite brocades, masks, costumes, thangkas, and ritual objects. Items not in regular use were stored in trunks, which were highly decorated and often donated to the monasteries themselves." },
+  { id: "leather",  label: "Tibetan Leather Trunks",              subtitle: "For the road — travelled forms, tooled and burnished.", period: "18th – 19th Century",
+    essay: "Tibetans often combined trading with pilgrimages and required durable leather trunks for their journeys. Some of these trunks were decorated with patches of genuine tiger skin or brocade and reinforced with intricate brass and ironwork." },
+  { id: "cabinets", label: "Tibetan Cabinets & Altars",           subtitle: "Structures for the sacred and the daily — carved, layered, painted.", period: "18th – 20th Century",
+    essay: "Cabinets, with their front-opening panels or doors, were ideal for everyday use in both households and monasteries. Their decoration often reflected the fashion of the time or the patron\u2019s specific preferences, with exceptions for specialised cabinets like altars, torgams, and yangams, which conformed to specific iconography." },
+  { id: "tables",   label: "Tibetan Tables",                      subtitle: "Decorated to the elevation of the seat — by rank, by rite.", period: "15th – 20th Century",
+    essay: "Where there was a seat, there was a table: its decoration and elevation reflecting the seat\u2019s importance, whether it was a high lama\u2019s throne or a simple rug on the ground." },
 ];
 
 // Period lookup for filtering
