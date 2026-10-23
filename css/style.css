@@ -928,6 +928,12 @@ body {
   color: var(--ink-mute);
 }
 
+/* Plate hero — featured image between hero and About */
+.plate-hero {
+  padding: var(--pad-md) var(--pad-md) 0;
+  background: var(--bg);
+}
+
 /* Featured plate — single large image */
 .story-figure.featured {
   max-width: 900px;
