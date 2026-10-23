@@ -647,7 +647,8 @@ body {
   font-family: var(--serif);
   font-style: normal;
   font-size: 1.05rem;
-  color: var(--ink-soft);
+  line-height: 1.75;
+  color: var(--ink);
 }
 .category-essay {
   max-width: 720px;
