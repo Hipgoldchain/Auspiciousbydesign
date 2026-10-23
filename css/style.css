@@ -659,9 +659,9 @@ body {
 }
 .category-essay p {
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.75;
-  color: var(--ink-soft);
+  color: var(--ink);
   margin: 0 0 1rem;
 }
 .category-essay p:last-child { margin-bottom: 0; }

@@ -54,8 +54,7 @@
               ${items.length === 1 ? "piece" : "pieces"} &middot; ${esc(cat.period)}
             </div>
           </div>
-          <p class="category-sub">${esc(cat.subtitle)}</p>
-          ${cat.essay ? `<div class="category-essay"><p>${esc(cat.essay)}</p></div>` : ''}
+          ${cat.essay ? `<div class="category-essay"><p>${esc(cat.essay)}</p></div>` : `<p class="category-sub">${esc(cat.subtitle)}</p>`}
           <div class="grid" data-grid="${cat.id}">
             ${items.map((piece, i) => renderCard(piece, i)).join("")}
           </div>
