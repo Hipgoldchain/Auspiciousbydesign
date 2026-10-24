@@ -49,10 +49,6 @@
               <div class="category-roman">${["I", "II", "III", "IV"][idx]}.</div>
               <h2 class="category-name">${esc(cat.label)}</h2>
             </div>
-            <div class="category-meta">
-              <span class="count">${items.length}</span>
-              ${items.length === 1 ? "piece" : "pieces"} &middot; ${esc(cat.period)}
-            </div>
           </div>
           <p class="category-sub">${esc(cat.essay || cat.subtitle)}</p>
           <div class="grid" data-grid="${cat.id}">
@@ -110,13 +106,13 @@
       <article class="card${piece.sold ? " sold" : ""}" data-code="${piece.code}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
         ${imgPart}
         ${soldBanner}
-        ${viewCount}
         <div class="card-body">
-          <div class="card-ref">No. ${piece.no} · ${piece.code}</div>
+          <div class="card-ref">${piece.code}</div>
           <h3 class="card-title">${esc(piece.title)}</h3>
           <div class="card-period">${esc(piece.period)}</div>
           <div class="card-origin">${esc(piece.origin)}</div>
           <div class="card-dims">${esc(piece.dimensions)}</div>
+          ${viewCount}
         </div>
       </article>
     `;
