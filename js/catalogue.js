@@ -172,7 +172,7 @@ const CATALOGUE = [
   // III. CABINETS & ALTARS (No. 31–58)
   // ══════════════════════════════════════════════
   { no: 31, code: "SC836", category: "cabinets", title: "Pegam Cabinet",
-    period: "18th Century", origin: "Central Tibet", dimensions: "42 × 80 · H 99cm",
+    period: "18th Century", origin: "Central Tibet", dimensions: "42 × 80 · H 99cm", sold: true,
     bookImages: [47],
     images: [{ file: "plate_47.jpg", label: "Full view" }],
     description: "A pegam-style cabinet with scalloped panels around the top, back and sides. Beautifully pictorial: the Six Symbols of Longevity, a high dignitary receiving offerings, the Chinese monk Hvashang surrounded by children, a forest scene with deer and wolves, and a caravan crossing a wooden bridge into a trading city on stilts." },
@@ -182,7 +182,7 @@ const CATALOGUE = [
     images: [{ file: "plate_48.jpg", label: "Full view" }],
     description: "A characteristic scalloped back and side panels. The front has one door and two fixed panels decorated with bold lotus blossom and green leaves on red. The sides depict a gakyil — Tibetan Wheel of Joy — in four swirling colours representing earth, water, fire and air." },
   { no: 33, code: "SC225", category: "cabinets", title: "Kham Cabinet",
-    period: "19th Century", origin: "Eastern Tibet", dimensions: "35 × 144 · H 94cm",
+    period: "19th Century", origin: "Eastern Tibet", dimensions: "35 × 144 · H 94cm", sold: true,
     bookImages: [49],
     images: [{ file: "plate_49.jpg", label: "Full view" }],
     description: "Typical of Kham — thick frame, bold design, mainly decorative. On the side panels, a female deer and male deer (perhaps a unicorn). Centre: a Wheel of Joy surrounded by a dramatic continuous swastika pattern. Lower panels show peacocks bent to eat flowers, and a lotus holding a single jewel." },
@@ -222,7 +222,7 @@ const CATALOGUE = [
     images: [{ file: "plate_56.jpg", label: "Full view" }],
     description: "Three drawers above, two opening doors flanked by two fixed panels, and three lower fixed panels. Each panel features a central scrolling medallion with floral design on red. Surrounded by rag dul — imitation gold — with the design executed in kyung bur." },
   { no: 41, code: "SC305", category: "cabinets", title: "Cabinet",
-    period: "19th–Early 20th Century", origin: "Central Tibet", dimensions: "47 × 123 · H 107cm",
+    period: "19th–Early 20th Century", origin: "Central Tibet", dimensions: "47 × 123 · H 107cm", sold: true,
     bookImages: [57],
     images: [{ file: "plate_57.jpg", label: "Full view" }],
     description: "Full of life and colour. The four central door roundels each contain a pictorial scene: a Tibetan house party with dancers; Chinese figures viewing a scroll; the Four Friends fable in a beautiful meadow; and Tibetan aristocrats who have adopted the Chinese custom of dining at a chair-and-table." },
