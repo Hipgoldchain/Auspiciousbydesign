@@ -99,9 +99,6 @@
       : `<div class="card-img placeholder">${PLACEHOLDER_SVG}</div>`;
 
     const soldBanner = piece.sold ? `<div class="sold-banner" aria-label="Sold"><span>Sold</span></div>` : "";
-    const viewCount = piece.images.length > 1
-      ? `<div class="card-views">${piece.images.length} views</div>` : "";
-
     return `
       <article class="card${piece.sold ? " sold" : ""}" data-code="${piece.code}" data-cat="${piece.category}" data-century="${getEarliestCentury(piece.period)}">
         ${imgPart}
@@ -112,7 +109,6 @@
           <div class="card-period">${esc(piece.period)}</div>
           <div class="card-origin">${esc(piece.origin)}</div>
           <div class="card-dims">${esc(piece.dimensions)}</div>
-          ${viewCount}
         </div>
       </article>
     `;
